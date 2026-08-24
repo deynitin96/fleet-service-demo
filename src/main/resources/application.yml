@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: fleet_service_demo
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/fleet_db
+    username: root
+    password: nitin@14
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.fleet.entity
+
+server:
+  port: 8081
