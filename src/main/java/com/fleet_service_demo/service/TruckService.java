@@ -42,7 +42,9 @@ public class TruckService {
     }
 
     public TruckResponse getTruckById(long id) {
-        Truck truck = truckMapper.findById(id);
+        Truck truck = truckMapper.findById(id).orElseThrow(() -> new RuntimeException("Truck not found with id: " + id));
         return truckDtoMapper.toResponse(truck);
     }
+
+
 }

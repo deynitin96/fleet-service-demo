@@ -72,4 +72,18 @@ List<Truck> findAvailableTrucks();
         """)
 Truck findById(long id);
 
+@Select("""
+        SELECT id,
+               truck_number AS truckNumber,
+               truck_type AS truckType,
+               status,
+               location,
+               mileage,
+               model,
+               manufacturing_year AS manufacturingYear
+        FROM truck
+        WHERE location = #{location}
+        """)
+Truck findByLocation(String location);
+
 }

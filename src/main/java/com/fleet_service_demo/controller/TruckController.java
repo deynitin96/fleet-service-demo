@@ -82,12 +82,21 @@ public class TruckController {
     // http://localhost:8081/api/v1/trucks/getTruckById/1
     @GetMapping("/getTruckById/{id}")
     public ResponseEntity<?> getTruckById(@PathVariable long id){
-        TruckResponse truckResponse = truckService.getTruckById(id);
-        APIResponse<TruckResponse> response = new APIResponse<>(
+        try {
+            TruckResponse truckResponse = truckService.getTruckById(id);
+            APIResponse<TruckResponse> response = new APIResponse<>(
                     "Truck retrieved successfully",
                     HttpStatus.OK.value(),
                     truckResponse
             );
-        return new ResponseEntity<>(response, HttpStatus.OK);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (RuntimeException ex) {
+            APIResponse<String> response = new APIResponse<>(
+                    ex.getMessage(),
+                    HttpStatus.NOT_FOUND.value(),
+                    null
+            );
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
     }
     }
