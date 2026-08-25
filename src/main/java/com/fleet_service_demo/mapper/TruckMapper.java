@@ -4,6 +4,9 @@ import com.fleet_service_demo.entity.Truck;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 @Mapper
 public interface TruckMapper {
@@ -27,5 +30,46 @@ public interface TruckMapper {
         """)
 @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
 int insert(Truck truck);
+
+@Select("""
+        SELECT id,
+               truck_number AS truckNumber,
+               truck_type AS truckType,
+               status,
+               location,
+               mileage,
+               model,
+               manufacturing_year AS manufacturingYear
+        FROM truck
+        """)
+List<Truck> findAll();
+
+@Select("""
+        SELECT id,
+               truck_number AS truckNumber,
+               truck_type AS truckType,
+               status,
+               location,
+               mileage,
+               model,
+               manufacturing_year AS manufacturingYear
+        FROM truck
+        WHERE status = 'AVAILABLE'
+        """)
+List<Truck> findAvailableTrucks();
+
+@Select("""
+        SELECT id,
+               truck_number AS truckNumber,
+               truck_type AS truckType,
+               status,
+               location,
+               mileage,
+               model,
+               manufacturing_year AS manufacturingYear
+        FROM truck
+        WHERE id = #{id}
+        """)
+Truck findById(long id);
 
 }

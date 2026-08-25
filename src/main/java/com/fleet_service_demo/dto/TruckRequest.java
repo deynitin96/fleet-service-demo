@@ -4,25 +4,27 @@ import jakarta.validation.constraints.*;
 
 public record TruckRequest(
 
-        @NotBlank
+        @NotBlank(message = "Truck number is required!!")
         String truckNumber,
 
-        @NotBlank
+        @NotBlank(message = "Truck type is required!!")
         String truckType,
 
-        @NotBlank
+        @NotBlank(message = "Status is required!!")
         String status,
 
-        @NotBlank
+        @NotBlank(message = "Location is required!!")
         String location,
 
-        @PositiveOrZero
+        @NotNull(message = "Mileage is required!!")
+        @PositiveOrZero(message = "Mileage must be a positive number")
         long mileage,
 
-        @NotBlank
+        @NotBlank(message = "Model is required!!")
         String model,
 
-        @Min(2000)
+        @NotNull(message = "Manufacturing year is required!!")
+        @Min(value = 2000, message = "Manufacturing year must be a valid year!!")
         int manufacturingYear
 
 ) {
