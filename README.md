@@ -24,3 +24,6 @@ VALUES
 ('TRK-1004', 'HEAVY_DUTY', 'MAINTENANCE', 'BANGALORE', 78000, 'Volvo', 2022);
 
 select * from truck;
+
+
+API Documentation: https://documenter.getpostman.com/view/57559450/2sBYAuRAjB 
