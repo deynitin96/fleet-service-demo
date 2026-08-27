@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface TruckMapper {
@@ -70,7 +71,7 @@ List<Truck> findAvailableTrucks();
         FROM truck
         WHERE id = #{id}
         """)
-Truck findById(long id);
+Optional<Truck> findById(long id);
 
 @Select("""
         SELECT id,
@@ -84,6 +85,7 @@ Truck findById(long id);
         FROM truck
         WHERE location = #{location}
         """)
-Truck findByLocation(String location);
+List<Truck> findByLocation(String location);
+
 
 }

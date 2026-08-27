@@ -3,6 +3,7 @@ package com.fleet_service_demo.service;
 import com.fleet_service_demo.dto.TruckRequest;
 import com.fleet_service_demo.dto.TruckResponse;
 import com.fleet_service_demo.entity.Truck;
+import com.fleet_service_demo.exception.TruckNotFoundException;
 import com.fleet_service_demo.mapper.TruckDtoMapper;
 import com.fleet_service_demo.mapper.TruckMapper;
 import org.springframework.stereotype.Service;
@@ -42,9 +43,15 @@ public class TruckService {
     }
 
     public TruckResponse getTruckById(long id) {
-        Truck truck = truckMapper.findById(id).orElseThrow(() -> new RuntimeException("Truck not found with id: " + id));
+        Truck truck = truckMapper.findById(id).orElseThrow(() -> new TruckNotFoundException("Truck not found with ID: " + id));
         return truckDtoMapper.toResponse(truck);
     }
 
+    public List<TruckResponse> getTruckByLocation(String location) {
+        List<Truck> trucks = truckMapper.findByLocation(location);
+        return trucks.stream()
+                     .map(truckDtoMapper::toResponse)
+                     .collect(Collectors.toList());
+    }
 
 }
