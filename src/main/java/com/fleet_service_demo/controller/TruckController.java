@@ -82,37 +82,54 @@ public class TruckController {
 
     // http://localhost:8081/api/v1/trucks/getTruckById/1
     @GetMapping("/getTruckById/{id}")
-    public ResponseEntity<?> getTruckById(@PathVariable long id){
-            TruckResponse truckResponse = truckService.getTruckById(id);
-            APIResponse<TruckResponse> response = new APIResponse<>(
-                    "Truck retrieved successfully",
-                    HttpStatus.OK.value(),
-                    truckResponse
-            );
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        }
-
-        // http://localhost:8081/api/v1/trucks/getTruckByLocation?location=CHENNAI
-        @GetMapping("/getTruckByLocation")
-        public ResponseEntity<?> getTruckByLocation(@RequestParam String location){
-            List<TruckResponse> truckResponse = truckService.getTruckByLocation(location);
-            APIResponse<List<TruckResponse>> response = new APIResponse<>(
-                    "Trucks retrieved successfully based on Location",
-                    HttpStatus.OK.value(),
-                    truckResponse
-            );
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        }
-
-        // http://localhost:8081/api/v1/trucks/getFleetSummary
-        @GetMapping("/getFleetSummary")
-        public ResponseEntity<?> getFleetSummary() {
-            FleetSummaryResponse fleetSummary = truckService.getFleetSummary();
-            APIResponse<FleetSummaryResponse> response = new APIResponse<>(
-                    "Fleet summary retrieved successfully",
-                    HttpStatus.OK.value(),
-                    fleetSummary
-            );
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        }
+    public ResponseEntity<?> getTruckById(@PathVariable long id) {
+        TruckResponse truckResponse = truckService.getTruckById(id);
+        APIResponse<TruckResponse> response = new APIResponse<>(
+                "Truck retrieved successfully",
+                HttpStatus.OK.value(),
+                truckResponse
+        );
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    // http://localhost:8081/api/v1/trucks/getTruckByLocation?location=CHENNAI
+    @GetMapping("/getTruckByLocation")
+    public ResponseEntity<?> getTruckByLocation(@RequestParam String location) {
+        List<TruckResponse> truckResponse = truckService.getTruckByLocation(location);
+        APIResponse<List<TruckResponse>> response = new APIResponse<>(
+                "Trucks retrieved successfully based on Location",
+                HttpStatus.OK.value(),
+                truckResponse
+        );
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    // http://localhost:8081/api/v1/trucks/getFleetSummary
+    @GetMapping("/getFleetSummary")
+    public ResponseEntity<?> getFleetSummary() {
+        FleetSummaryResponse fleetSummary = truckService.getFleetSummary();
+        APIResponse<FleetSummaryResponse> response = new APIResponse<>(
+                "Fleet summary retrieved successfully",
+                HttpStatus.OK.value(),
+                fleetSummary
+        );
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    // http://localhost:8081/api/v1/trucks/rentTruck/1
+    @PostMapping("/rentTruck/{id}")
+    public ResponseEntity<?> rentTruck(@PathVariable long id) {
+
+        TruckResponse truckResponse = truckService.rentTruck(id);
+
+        APIResponse<TruckResponse> response = new APIResponse<>(
+                "Truck rented successfully",
+                HttpStatus.OK.value(),
+                truckResponse
+        );
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+
+}

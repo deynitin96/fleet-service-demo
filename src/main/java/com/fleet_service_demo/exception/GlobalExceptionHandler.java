@@ -15,13 +15,27 @@ import java.util.Date;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(TruckNotFoundException.class)
-    public ResponseEntity<?> handleTruckNotFoundException(TruckNotFoundException ex, WebRequest request) {
+    public ResponseEntity<?> handleTruckNotFoundException(
+            TruckNotFoundException ex,
+            WebRequest request) {
+
         ErrorDto errorDto = new ErrorDto(
                 ex.getMessage(),
                 LocalDateTime.now(),
                 request.getDescription(false)
         );
-        return new ResponseEntity<>(errorDto, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        return new ResponseEntity<>(errorDto, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(TruckRentalException.class)
+    public ResponseEntity<?> handleTruckRentalException(TruckRentalException ex, WebRequest request) {
+        ErrorDto errorDto = new ErrorDto(
+                ex.getMessage(),
+                LocalDateTime.now(),
+                request.getDescription(false)
+        );
+        return new ResponseEntity<>(errorDto,  HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(Exception.class)
