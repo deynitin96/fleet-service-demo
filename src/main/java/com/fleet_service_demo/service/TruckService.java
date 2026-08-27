@@ -1,5 +1,6 @@
 package com.fleet_service_demo.service;
 
+import com.fleet_service_demo.dto.FleetSummaryResponse;
 import com.fleet_service_demo.dto.TruckRequest;
 import com.fleet_service_demo.dto.TruckResponse;
 import com.fleet_service_demo.entity.Truck;
@@ -52,6 +53,10 @@ public class TruckService {
         return trucks.stream()
                      .map(truckDtoMapper::toResponse)
                      .collect(Collectors.toList());
+    }
+
+    public FleetSummaryResponse getFleetSummary() {
+        return truckMapper.getFleetSummary();
     }
 
 }

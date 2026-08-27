@@ -1,6 +1,7 @@
 package com.fleet_service_demo.controller;
 
 import com.fleet_service_demo.dto.APIResponse;
+import com.fleet_service_demo.dto.FleetSummaryResponse;
 import com.fleet_service_demo.dto.TruckRequest;
 import com.fleet_service_demo.dto.TruckResponse;
 import com.fleet_service_demo.service.TruckService;
@@ -99,6 +100,18 @@ public class TruckController {
                     "Trucks retrieved successfully based on Location",
                     HttpStatus.OK.value(),
                     truckResponse
+            );
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+
+        // http://localhost:8081/api/v1/trucks/getFleetSummary
+        @GetMapping("/getFleetSummary")
+        public ResponseEntity<?> getFleetSummary() {
+            FleetSummaryResponse fleetSummary = truckService.getFleetSummary();
+            APIResponse<FleetSummaryResponse> response = new APIResponse<>(
+                    "Fleet summary retrieved successfully",
+                    HttpStatus.OK.value(),
+                    fleetSummary
             );
             return new ResponseEntity<>(response, HttpStatus.OK);
         }

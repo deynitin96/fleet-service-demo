@@ -1,5 +1,6 @@
 package com.fleet_service_demo.mapper;
 
+import com.fleet_service_demo.dto.FleetSummaryResponse;
 import com.fleet_service_demo.entity.Truck;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -87,5 +88,8 @@ Optional<Truck> findById(long id);
         """)
 List<Truck> findByLocation(String location);
 
-
+@Select("""
+        {CALL get_fleet_summary()}
+        """)
+FleetSummaryResponse getFleetSummary();
 }
