@@ -46,7 +46,7 @@ public class TruckService {
     }
 
     public TruckResponse getTruckById(long id) {
-        Truck truck = truckMapper.findById(id).orElseThrow(() -> new TruckNotFoundException("Truck not found with ID: " + id));
+        Truck truck = truckMapper.findById(id).orElseThrow(() -> new TruckNotFoundException(id));
         return truckDtoMapper.toResponse(truck);
     }
 
@@ -68,7 +68,7 @@ public class TruckService {
         int resultCode = rentTruckRequest.getResultCode();
 
         if (resultCode == 1) {
-            throw new TruckNotFoundException("Truck not found with ID: " + id);
+                    throw new TruckNotFoundException(id);
         } else if (resultCode == 2) {
             throw new TruckRentalException("Truck is not available for rent with ID: " + id);
         } else if (resultCode != 0) {

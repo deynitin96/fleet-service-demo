@@ -102,7 +102,7 @@ FleetSummaryResponse getFleetSummary();
             #{resultCode, mode=OUT, jdbcType=INTEGER}
             )}
         """)
-@Options(statementType = StatementType.CALLABLE)
+@Options(statementType = StatementType.CALLABLE) // Specify that this is a callable statement for stored procedure
 void rentTruck(RentTruckRequest request);
 
 }
