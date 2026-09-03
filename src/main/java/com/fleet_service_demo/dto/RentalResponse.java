@@ -13,6 +13,7 @@ public record RentalResponse(
         String customerName,
         LocalDateTime rentalStartDate,
         LocalDateTime expectedReturnDate,
-        String status
+        String status,
+        PricingResponse pricing
 ) {
 }

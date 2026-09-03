@@ -3,6 +3,7 @@ package com.fleet_service_demo.dto;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 
 import java.time.LocalDateTime;
 
@@ -13,6 +14,9 @@ public record RentalRequest(
 
         @NotNull(message = "Rental start date is required!!")
         @Future(message = "Rental start date must be in the future!!")
-        LocalDateTime expectedReturnDate
+        LocalDateTime expectedReturnDate,
+
+        @PositiveOrZero(message="Estimated miles must be zero or greater")
+        double estimatedMiles
 ) {
 }

@@ -10,7 +10,11 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.example.fleet.entity
+  type-aliases-package: com.fleet_service_demo.entity
 
 server:
   port: 8081
+
+services:
+  pricing:
+    url: http://localhost:8082/api/v1/pricing

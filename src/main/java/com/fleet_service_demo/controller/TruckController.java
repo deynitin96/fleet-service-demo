@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/trucks")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
 public class TruckController {
 
     private final TruckService truckService;
